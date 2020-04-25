@@ -17,6 +17,7 @@ export default class SellerCard extends React.Component {
 
     return <ul style={{ listStyleType: "none" }}>{list}</ul>;
   }
+
   render() {
     return (
       <Paper elevation={3} variant="outlined">

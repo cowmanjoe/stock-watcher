@@ -11,9 +11,35 @@ export default class SellerForm extends React.Component {
   }
 
   handleSubmit() {
-    // fetch(); //...
+
+    fetch("http://localhost:8000/sellers/", {
+      method: "post",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify({
+        name: "Big Aleen",
+        address: "123 Smith Street",
+        city: "Lower Cornelius",
+        latitude: 69.0,
+        longitude: 69.0,
+        inventory_reports: [
+            {
+                "level": "low",
+                "product": {
+                    "name": "Charmin Ultra",
+                    "product_type": "Toilet Paper"
+                },
+                "timestamp": "2020-04-25T12:59:04.331697Z"
+            }
+        ]
+      })
+    }).then(response => response.json())
+   
   }
-  //TODO: add a post request here
+  
 
   render() {
     const styles = {

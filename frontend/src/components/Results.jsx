@@ -5,7 +5,7 @@ export default class Results extends React.Component {
     super(props);
     this.state = {
       id: "",
-      sellers: {},
+      sellers: [],
     };
 
     this.renderSellers = this.renderSellers.bind(this);
@@ -15,35 +15,57 @@ export default class Results extends React.Component {
     const { item } = this.props.match.params;
     this.setState({ id: item });
 
-    let response = await fetch("http://localhost:8000/sellers/",{
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => {
-        response.json();
-      })
-      .then((jsonResponse) => {
-        return jsonResponse.results.map((seller) => {
-          return {
-            name: seller.name,
-            address: seller.address,
-            city: seller.address,
-          };
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-        return {
-          name: "Error",
+    let sellers;
+    let response;
+    try {
+      response = await fetch("http://localhost:8000/sellers/", {
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (err) {
+      console.log(err);
+      sellers = {
+        name: "Error",
+        products: [
+          {
+            name: "Error",
+            stock: "Out of Stock",
+          },
+        ],
+      };
+    }
+
+    console.log(response);
+
+    let jsonResponse = await response.json();
+
+    console.log(jsonResponse);
+    if (!jsonResponse) {
+      sellers = [
+        {
+          name: "Sample",
           products: [
             {
-              name: "Error",
-              stock: "Out of Stock",
+              name: "Milk",
+              stock: "Low",
             },
           ],
-        };
-      });
+          address: "123 Main St",
+          city: "Cityville",
+        },
+      ];
+    } else {
+      sellers = jsonResponse.results.map((seller) => ({
+        name: seller.name,
+        products: seller.products,
+        address: seller.address,
+        city: seller.city,
+      }));
+    }
+    
+    console.log(response);
+
     this.setState({
-      sellers: response,
+      sellers: sellers,
     });
   }
 
@@ -51,10 +73,10 @@ export default class Results extends React.Component {
     var list = [];
 
     if (this.state.sellers) {
-      Object.keys(this.state.sellers).forEach((seller, i) => {
+      this.state.sellers.forEach((seller, i) => {
         list.push(
           <li key={i}>
-            <SellerCard name={seller.name} products={seller.products} />
+            <SellerCard name={seller.name} address={seller.address} products={seller.products} />
           </li>
         );
       });
