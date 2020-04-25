@@ -7,9 +7,11 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import SellerForm from './components/SellerForm';
 import Navbar from "./components/Navbar";
+let value = 0;
+
 const App = (
   <Router>
-    <Navbar />
+    <Navbar value={value} changeValue={(num) => value = num} />
 
     <div>
       <Route exact path="/" component={Home} />

@@ -19,9 +19,11 @@ class SearchBar extends React.Component {
     if (event) {
       event.preventDefault();
     }
-    console.log("Searching for " + this.state.term);
-    this.props.getResults(this.state.term);
-    this.state.term = "";
+    if (this.state.term) {
+      console.log("Searching for " + this.state.term);
+      this.props.getResults(this.state.term);
+      this.state.term = "";
+    }
   }
 
   handleEnter(event) {
