@@ -5,12 +5,18 @@ import Home from "./components/Home";
 import Results from "./components/Results";
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import SellerForm from './components/SellerForm';
+import Navbar from "./components/Navbar";
+let value = 0;
 
 const App = (
   <Router>
+    <Navbar value={value} changeValue={(num) => value = num} />
+
     <div>
       <Route exact path="/" component={Home} />
-      <Route exact path="/:item" component={Results} />
+      <Route exact path="/results/:item" component={Results} />
+      <Route exact path="/sellers" component={SellerForm} />
     </div>
   </Router>
 );
