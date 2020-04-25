@@ -3,6 +3,15 @@ import React from "react";
 export default class SellerForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: "",
+      stock: "",
+      address: "",
+    };
+  }
+
+  handleSubmit() {
+    fetch(); //...
   }
   //TODO: add a post request here
 
@@ -18,7 +27,8 @@ export default class SellerForm extends React.Component {
           <label
             style={{
               margin: "10px",
-            }}>
+            }}
+            onChange={(event) => this.setState({ name: event.target.value })}>
             Name
           </label>
           <input name="name" class="form-control" type="text" value="" />
@@ -27,7 +37,8 @@ export default class SellerForm extends React.Component {
           <label
             style={{
               margin: "10px",
-            }}>
+            }}
+            onChange={(event) => this.setState({ stock: event.target.value })}>
             Stock Levels
           </label>
           <input type="radio" id="high" name="gender" value="high" />
@@ -52,7 +63,7 @@ export default class SellerForm extends React.Component {
           style={{
             margin: "10px",
           }}>
-          <button>Submit</button>
+          <button onClick={this.handleSubmit}>Submit</button>
         </div>
       </div>
     );
