@@ -1,8 +1,9 @@
 import datetime
 import random
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from api.app.models import Seller as Seller, InventoryReport, Product
+from mixer.backend.django import mixer
 
 
 class Command(BaseCommand):
@@ -16,11 +17,7 @@ class Command(BaseCommand):
         for seller_name in options["seller_names"]:
             if seller_name == "RANDOM":
                 for i in range(10):
-                    store_name = 'store ' + str(random.randint(0, 10000))
-                    location_name = 'location ' + str(random.randint(0, 10000))
-                    
-                    seller = Seller(name=store_name, location=location_name)
-                    seller.save()
+                    seller = mixer.blend(Seller)
 
                     product, created = Product.objects.get_or_create(name="Charmin Ultra", product_type="Toilet Paper")
 
@@ -31,7 +28,7 @@ class Command(BaseCommand):
                 break
 
             # If not random, add the desired sellers        
-            seller = Seller(name=seller_name, location='Up your butt')
+            seller = mixer.blend(Seller, name=seller_name)
             seller.save()
 
             print("Added:", seller_name)

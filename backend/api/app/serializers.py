@@ -14,7 +14,7 @@ class InventoryReportSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = InventoryReport
-        fields = ['level', 'product']
+        fields = ['level', 'product', 'timestamp']
 
 
 class SellerSerializer(serializers.HyperlinkedModelSerializer):
@@ -22,5 +22,5 @@ class SellerSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Seller
-        fields = ['name', 'location', 'inventory_reports']
+        fields = ['name', 'address', 'city', 'latitude', 'longitude', 'inventory_reports']
         depth = 3
