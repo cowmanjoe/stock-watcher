@@ -7,18 +7,20 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import SellerForm from './components/SellerForm';
 import Navbar from "./components/Navbar";
-let value = 0;
+let value = 1;
 
 const App = (
-  <Router>
-    <Navbar value={value} changeValue={(num) => value = num} />
+  <div style={{ fontFamily: "Roboto" }}>
+    <Router>
+      <Navbar value={value} />
 
-    <div>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/results/:item" component={Results} />
-      <Route exact path="/sellers" component={SellerForm} />
-    </div>
-  </Router>
+      <div>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/results/:item" component={Results} />
+        <Route exact path="/sellers" component={SellerForm} />
+      </div>
+    </Router>
+  </div>
 );
 
 ReactDOM.render(App, document.getElementById("root"));
