@@ -8,8 +8,7 @@ class Seller(models.Model):
 
 
 class Product(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, primary_key=True)
     product_type = models.CharField(max_length=100)
 
 

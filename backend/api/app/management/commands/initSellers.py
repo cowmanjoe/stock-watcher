@@ -1,4 +1,5 @@
 import datetime
+import random
 
 from django.core.management.base import BaseCommand, CommandError
 from api.app.models import Seller as Seller, InventoryReport, Product
@@ -15,20 +16,13 @@ class Command(BaseCommand):
         for seller_name in options["seller_names"]:
             if seller_name == "RANDOM":
                 for i in range(10):
-                    store_name = 'store' + str(i)
-
-                    if i % 2 == 0:
-                        location_name = 'near'
-                        stock_name = 'We got Hella'
-                    else:
-                        location_name = 'far'
-                        stock_name = 'We got None'
+                    store_name = 'store ' + str(random.randint(0, 10000))
+                    location_name = 'location ' + str(random.randint(0, 10000))
                     
                     seller = Seller(name=store_name, location=location_name)
                     seller.save()
 
-                    product = Product(name="Charmin Ultra", product_type="Toilet Paper")
-                    product.save()
+                    product, created = Product.objects.get_or_create(name="Charmin Ultra", product_type="Toilet Paper")
 
                     inventory_report = InventoryReport(seller=seller, timestamp=datetime.datetime.now(), product=product, level="low")
                     inventory_report.save()
@@ -37,7 +31,7 @@ class Command(BaseCommand):
                 break
 
             # If not random, add the desired sellers        
-            seller = Seller(name=seller_name, location='Up your butt', stock_levels='We got Hella')
+            seller = Seller(name=seller_name, location='Up your butt')
             seller.save()
 
             print("Added:", seller_name)
