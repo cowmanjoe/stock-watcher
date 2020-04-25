@@ -1,13 +1,18 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
 
+import TextField from "@material-ui/core/TextField";
 export default class SellerForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
-      stock: "",
       address: "",
-    };
+      city: "",
+      latitude: 0.0,
+      longitude: 0.0,
+      inventory_reports: []
+    }
   }
 
   handleSubmit() {
@@ -20,7 +25,7 @@ export default class SellerForm extends React.Component {
       },
 
       body: JSON.stringify({
-        name: "Big Aleen",
+        name: "yoo",
         address: "123 Smith Street",
         city: "Lower Cornelius",
         latitude: 69.0,
@@ -39,91 +44,40 @@ export default class SellerForm extends React.Component {
     }).then(response => response.json())
    
   }
-  
+
+  handleNameChange(event) {
+    this.setState({ name: event.target.value });
+  }
+
+  handleAddressChange(event) {
+    this.setState({ address: event.target.value });
+  }
+
+  handleCityChange(event) {
+    this.setState({ city: event.target.value });
+  }
+
+  handleLatitudeChange(event) {
+    this.setState({ latitude: event.target.value });
+  }
+
+  handleLongitudeChange(event) {
+    this.setState({ longitude: event.target.value });
+  }
 
   render() {
-    const styles = {
-      lable: {
-        margin: "10px",
-      },
-    };
     return (
-      <div style={{ margin: "15px" }}>
-        <div>
-          <label
-            style={{
-              margin: "10px",
-            }}>
-            Name
-          </label>
-          <input
-            name="name"
-            type="text"
-            value=""
-            onChange={(event) => this.setState({ name: event.target.value })}
-          />
-        </div>
-        <div>
-          <label
-            style={{
-              margin: "10px",
-            }}>
-            Stock Levels
-          </label>
-          <input
-            type="radio"
-            id="high"
-            name="stockLevel"
-            value="high"
-            onChange={(event) => this.setState({ stock: event.target.value })}
-          />
-          <label htmlFor="high">High</label>
-          <input
-            type="radio"
-            id="medium"
-            name="stockLevel"
-            value="medium"
-            onChange={(event) => this.setState({ stock: event.target.value })}
-          />
-          <label htmlFor="medium">Medium</label>
-          <input
-            type="radio"
-            id="low"
-            name="stockLevel"
-            value="low"
-            onChange={(event) => this.setState({ stock: event.target.value })}
-          />
-          <label htmlFor="low">Low</label>
-          <input
-            type="radio"
-            id="out"
-            name="stockLevel"
-            value="out"
-            onChange={(event) => this.setState({ stock: event.target.value })}
-          />
-          <label htmlFor="low">Out of Stock</label>
-        </div>
-        <div>
-          <label
-            style={{
-              margin: "10px",
-            }}>
-            Store Address
-          </label>
-          <input
-            name="location"
-            type="text"
-            value=""
-            onChange={(event) => this.setState({ address: event.target.value })}
-          />
-        </div>
-        <div
-          style={{
-            margin: "10px",
-          }}>
-          <button onClick={this.handleSubmit}>Submit</button>
-        </div>
-      </div>
+      <form noValidate autoComplete="off">
+        <TextField label="Store Name" variant="outlined" onChange={this.handleNameChange} />
+        <TextField label="Address" variant="outlined"  onChange={this.handleAddressChange}/>
+        <TextField label="City" variant="outlined"  onChange={this.handleCityChange}/>
+        <TextField label="Latitude" variant="outlined"  onChange={this.handleLatitudeChange}/>
+        <TextField label="Longitude" variant="outlined" onChange={this.handleLongitudeChange} />
+
+        <Button color="secondary" variant="contained" onClick={this.handleSubmit}> Enter Seller </Button>
+        
+      </form>
+      
     );
   }
 }
