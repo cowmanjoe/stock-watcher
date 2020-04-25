@@ -59,9 +59,12 @@ export default class Results extends React.Component {
         products: seller.products,
         address: seller.address,
         city: seller.city,
+        latitude: seller.latitude,
+        longitude: seller.longitude,
+        inventory_reports: seller.inventory_reports,
       }));
     }
-    
+
     console.log(response);
 
     this.setState({
@@ -76,7 +79,7 @@ export default class Results extends React.Component {
       this.state.sellers.forEach((seller, i) => {
         list.push(
           <li key={i}>
-            <SellerCard name={seller.name} address={seller.address} products={seller.products} />
+            <SellerCard seller={seller} />
           </li>
         );
       });
