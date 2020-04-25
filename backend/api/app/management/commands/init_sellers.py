@@ -22,8 +22,12 @@ class Command(BaseCommand):
                     for j in range(3):
                         product = mixer.blend(Product)
 
-                        inventory_report = InventoryReport(seller=seller, timestamp=datetime.datetime.now(tz=pytz.UTC), product=product, level="low")
-                        inventory_report.save()
+                        mixer.blend(
+                            InventoryReport,
+                            seller=seller,
+                            timestamp=datetime.datetime.now(tz=pytz.UTC),
+                            product=product
+                        )
                     print(seller.id)
 
                 print("Initialized Dummy Data")
