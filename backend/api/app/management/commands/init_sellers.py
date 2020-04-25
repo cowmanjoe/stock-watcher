@@ -23,6 +23,7 @@ class Command(BaseCommand):
 
                     inventory_report = InventoryReport(seller=seller, timestamp=datetime.datetime.now(), product=product, level="low")
                     inventory_report.save()
+                    print(seller.id)
 
                 print("Initialized Dummy Data")
                 break

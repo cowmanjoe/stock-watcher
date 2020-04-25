@@ -19,6 +19,7 @@ from api.app import views
 
 router = routers.DefaultRouter()
 router.register(r'sellers', views.SellerViewSet)
+router.register(r'inventory_reports', views.InventoryReportViewSet, basename='inventory_reports')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
