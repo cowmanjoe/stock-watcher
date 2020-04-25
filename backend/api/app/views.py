@@ -1,12 +1,13 @@
 import datetime
 import pytz
+from django.shortcuts import get_object_or_404
 
 from rest_framework import viewsets
 from rest_framework.response import Response
 
 from api.app.models import Seller, InventoryReport, Product
 from api.app.serializers import SellerSerializer, InventoryReportSerializer
-from django.shortcuts import get_object_or_404
+from rest_framework import generics
 
 
 class SellerViewSet(viewsets.ModelViewSet):
@@ -31,4 +32,22 @@ class InventoryReportViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
 
+class SellerList(generics.ListAPIView):
+    serializer_class = SellerSerializer
 
+    def get_queryset(self):
+
+        seller_ids = []
+
+        product = self.request.query_params.get('product', None)
+        inventory_report = InventoryReport.objects.filter(product__name__contains=product).exclude(level="OUT_OF_STOCK")
+
+        for i_r in inventory_report:
+            seller_ids.append(i_r.seller.id)
+
+        queryset = Seller.objects.filter(id__in=seller_ids)
+
+        if product is None:
+            queryset = Seller.objects.none
+            # queryset = queryset.filter(inventory_reports__product__name__contains=product)
+        return queryset
