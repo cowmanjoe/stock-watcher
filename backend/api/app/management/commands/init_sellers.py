@@ -1,5 +1,5 @@
 import datetime
-import random
+import pytz
 
 from django.core.management.base import BaseCommand
 from api.app.models import Seller as Seller, InventoryReport, Product
@@ -19,10 +19,11 @@ class Command(BaseCommand):
                 for i in range(10):
                     seller = mixer.blend(Seller)
 
-                    product, created = Product.objects.get_or_create(name="Charmin Ultra", product_type="Toilet Paper")
+                    for j in range(3):
+                        product = mixer.blend(Product)
 
-                    inventory_report = InventoryReport(seller=seller, timestamp=datetime.datetime.now(), product=product, level="low")
-                    inventory_report.save()
+                        inventory_report = InventoryReport(seller=seller, timestamp=datetime.datetime.now(tz=pytz.UTC), product=product, level="low")
+                        inventory_report.save()
                     print(seller.id)
 
                 print("Initialized Dummy Data")

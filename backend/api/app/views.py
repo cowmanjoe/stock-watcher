@@ -1,4 +1,5 @@
 import datetime
+import pytz
 
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -23,7 +24,7 @@ class InventoryReportViewSet(viewsets.ViewSet):
             product.product_type = request.data["product_type"]
             product.save()
 
-        report = InventoryReport(timestamp=datetime.datetime.now(), product=product, seller=seller, level=request.data["level"])
+        report = InventoryReport(timestamp=datetime.datetime.now(tz=pytz.UTC), product=product, seller=seller, level=request.data["level"])
         report.save()
 
         serializer = InventoryReportSerializer(report)
