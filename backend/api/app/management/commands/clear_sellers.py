@@ -13,7 +13,7 @@ class Command(BaseCommand):
         for seller_name in options['seller_names']:
 
             # If inputted "ALL", delete all current sellers
-            if(seller_name == "ALL"):
+            if seller_name == "ALL":
                 Seller.objects.all().delete()
                 print("Removed all Sellers")
                 break
