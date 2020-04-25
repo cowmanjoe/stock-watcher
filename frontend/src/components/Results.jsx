@@ -1,45 +1,59 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: "",
-      sellers: [],
+      sellers: ["fug", "frig"],
     };
 
-    this.renderSellerCards = this.renderSellerCards.bind(this);
+    this.renderSellers = this.renderSellers.bind(this);
   }
 
-  componentDidUpdate() {
+  async componentDidMount() {
     const { item } = this.props.match.params;
     this.setState({ id: item });
-    console.log("hello fetching");
 
-    fetch('http://localhost:8000/sellers/')
-        .then((response) => response.json())
-        .then(jsonResponse => {
-          console.log(jsonResponse);
-          this.setState({sellers: jsonResponse.results});
+    let response = await fetch("http://localhost:8000/sellers/",{
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => {
+        response.json();
+      })
+      .then((jsonResponse) => {
+        return jsonResponse.results.map((seller) => {
+          return {
+            name: seller.name,
+            address: seller.address,
+            city: seller.address,
+          };
         });
-    
+      })
+      .catch((error) => {
+        console.log(error);
+        return ["error"];
+      });
+    this.setState({
+      sellers: response,
+    });
   }
 
-  renderSellerCards() {
-    let list = [];
-    for (let i = 0; i < this.state.sellers.length; i++) {
-      list.push(<li>sellers[i].name</li>)
-    }
-    return <ul>{this.list}</ul>;
+  renderSellers() {
+    var list = [];
+    console.log(this.state.sellers);
+
+    this.state.sellers.forEach((seller, i) => {
+      list.push(<li key={i}>{seller}</li>);
+    });
+
+    return <ul style={{ listStyleType: "none" }}>{list}</ul>;
   }
-
-
   render() {
     return (
       <div>
         <h1>{`Searching for ${this.state.id}`}</h1>
-          {this.renderSellerCards()}
+        {this.renderSellers()}
       </div>
     );
   }

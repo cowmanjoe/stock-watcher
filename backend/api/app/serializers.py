@@ -1,22 +1,26 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
-from api.app.models import Seller
+from api.app.models import Seller, InventoryReport, Product
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'groups']
+        model = Product
+        fields = ['name', 'product_type']
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class InventoryReportSerializer(serializers.HyperlinkedModelSerializer):
+    product = ProductSerializer(read_only=True)
+
     class Meta:
-        model = Group
-        fields = ['url', 'name']
+        model = InventoryReport
+        fields = ['level', 'product', 'timestamp']
 
 
 class SellerSerializer(serializers.HyperlinkedModelSerializer):
+    inventory_reports = InventoryReportSerializer(many=True, read_only=True)
+
     class Meta:
         model = Seller
-        fields = ['name', 'location', 'stock_levels']
+        fields = ['name', 'address', 'city', 'latitude', 'longitude', 'inventory_reports']
+        depth = 3
