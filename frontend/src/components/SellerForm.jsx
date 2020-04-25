@@ -11,7 +11,7 @@ export default class SellerForm extends React.Component {
   }
 
   handleSubmit() {
-    fetch(); //...
+    // fetch(); //...
   }
   //TODO: add a post request here
 
@@ -31,7 +31,7 @@ export default class SellerForm extends React.Component {
             onChange={(event) => this.setState({ name: event.target.value })}>
             Name
           </label>
-          <input name="name" class="form-control" type="text" value="" />
+          <input name="name" type="text" value="" />
         </div>
         <div>
           <label
@@ -57,7 +57,7 @@ export default class SellerForm extends React.Component {
             }}>
             Store Address
           </label>
-          <input name="location" class="form-control" type="text" value="" />
+          <input name="location" type="text" value="" />
         </div>
         <div
           style={{

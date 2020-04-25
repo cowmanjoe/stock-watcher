@@ -22,7 +22,7 @@ class SearchBar extends React.Component {
     if (this.state.term) {
       console.log("Searching for " + this.state.term);
       this.props.getResults(this.state.term);
-      this.state.term = "";
+      this.setState({ term: "" });
     }
   }
 
