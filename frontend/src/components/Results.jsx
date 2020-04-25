@@ -1,11 +1,11 @@
 import React from "react";
-
+import SellerCard from "./SellerCard";
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: "",
-      sellers: ["fug", "frig"],
+      sellers: {},
     };
 
     this.renderSellers = this.renderSellers.bind(this);
@@ -32,7 +32,15 @@ export default class Results extends React.Component {
       })
       .catch((error) => {
         console.log(error);
-        return ["error"];
+        return {
+          name: "Error",
+          products: [
+            {
+              name: "Error",
+              stock: "Out of Stock",
+            },
+          ],
+        };
       });
     this.setState({
       sellers: response,
@@ -41,11 +49,16 @@ export default class Results extends React.Component {
 
   renderSellers() {
     var list = [];
-    console.log(this.state.sellers);
 
-    this.state.sellers.forEach((seller, i) => {
-      list.push(<li key={i}>{seller}</li>);
-    });
+    if (this.state.sellers) {
+      Object.keys(this.state.sellers).forEach((seller, i) => {
+        list.push(
+          <li key={i}>
+            <SellerCard name={seller.name} products={seller.products} />
+          </li>
+        );
+      });
+    }
 
     return <ul style={{ listStyleType: "none" }}>{list}</ul>;
   }

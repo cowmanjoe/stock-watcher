@@ -27,28 +27,55 @@ export default class SellerForm extends React.Component {
           <label
             style={{
               margin: "10px",
-            }}
-            onChange={(event) => this.setState({ name: event.target.value })}>
+            }}>
             Name
           </label>
-          <input name="name" type="text" value="" />
+          <input
+            name="name"
+            type="text"
+            value=""
+            onChange={(event) => this.setState({ name: event.target.value })}
+          />
         </div>
         <div>
           <label
             style={{
               margin: "10px",
-            }}
-            onChange={(event) => this.setState({ stock: event.target.value })}>
+            }}>
             Stock Levels
           </label>
-          <input type="radio" id="high" name="gender" value="high" />
-          <label for="high">High</label>
-          <input type="radio" id="medium" name="gender" value="medium" />
-          <label for="medium">Medium</label>
-          <input type="radio" id="low" name="gender" value="low" />
-          <label for="low">Low</label>
-          <input type="radio" id="out" name="gender" value="out" />
-          <label for="low">Out of Stock</label>
+          <input
+            type="radio"
+            id="high"
+            name="stockLevel"
+            value="high"
+            onChange={(event) => this.setState({ stock: event.target.value })}
+          />
+          <label htmlFor="high">High</label>
+          <input
+            type="radio"
+            id="medium"
+            name="stockLevel"
+            value="medium"
+            onChange={(event) => this.setState({ stock: event.target.value })}
+          />
+          <label htmlFor="medium">Medium</label>
+          <input
+            type="radio"
+            id="low"
+            name="stockLevel"
+            value="low"
+            onChange={(event) => this.setState({ stock: event.target.value })}
+          />
+          <label htmlFor="low">Low</label>
+          <input
+            type="radio"
+            id="out"
+            name="stockLevel"
+            value="out"
+            onChange={(event) => this.setState({ stock: event.target.value })}
+          />
+          <label htmlFor="low">Out of Stock</label>
         </div>
         <div>
           <label
@@ -57,7 +84,12 @@ export default class SellerForm extends React.Component {
             }}>
             Store Address
           </label>
-          <input name="location" type="text" value="" />
+          <input
+            name="location"
+            type="text"
+            value=""
+            onChange={(event) => this.setState({ address: event.target.value })}
+          />
         </div>
         <div
           style={{
