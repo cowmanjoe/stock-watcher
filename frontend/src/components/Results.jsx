@@ -6,23 +6,29 @@ export default class Results extends React.Component {
     super(props);
     this.state = {
       id: "",
+      sellers: [],
     };
   }
 
   componentDidMount() {
     const { item } = this.props.match.params;
     this.setState({ id: item });
-    //get request for the items
+
+    this.setState({
+      sellers: fetch('localhost:8000/sellers')
+        .then((response) => {
+          response.json();
+        }).then(jsonResponse => {
+          return jsonResponse.results;
+        })
+    });
+
   }
   render() {
     return (
       <div>
         <h1>{`Searching for ${this.state.id}`}</h1>
-        <p>Result # 1</p>
-        <p>Result # 2</p>
-        <p>Result # 3</p>
-        <p>Result # ...</p>
-        <p>Result # N</p>
+        {this.state.sellers.forEach((seller) => <div>{seller.name}</div>)}
       </div>
     );
   }

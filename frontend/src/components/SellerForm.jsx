@@ -5,6 +5,7 @@ export default class SellerForm extends React.Component {
     super(props);
   }
   //TODO: add a post request here
+
   render() {
     const styles = {
       lable: {
