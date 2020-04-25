@@ -20,8 +20,9 @@ export default class SellerCard extends React.Component {
   render() {
     return (
       <Paper elevation={3} variant="outlined">
-        <div className="storeName">{this.props.name}</div>
-        <div className="productList">{this.renderProducts()}</div>
+        <div className="storeName">Name: {this.props.name}</div>
+        <div className="storeName">Address: {this.props.address}</div>
+        <div className="productList">Products: {this.renderProducts()}</div>
       </Paper>
     );
   }

@@ -5,7 +5,7 @@ export default class Results extends React.Component {
     super(props);
     this.state = {
       id: "",
-      sellers: {},
+      sellers: [],
     };
 
     this.renderSellers = this.renderSellers.bind(this);
@@ -15,18 +15,34 @@ export default class Results extends React.Component {
     const { item } = this.props.match.params;
     this.setState({ id: item });
 
-    let response = await fetch("http://localhost:8000/sellers/",{
+    let response = await fetch("http://localhost:8000/sellers/", {
       headers: { "Content-Type": "application/json" },
     })
       .then((response) => {
         response.json();
       })
       .then((jsonResponse) => {
+        if (!jsonResponse) {
+          return [
+            {
+              name: "Sample",
+              products: [
+                {
+                  name: "Milk",
+                  stock: "Low",
+                },
+              ],
+              address: "123 Main St",
+              city: "Cityville",
+            },
+          ];
+        }
         return jsonResponse.results.map((seller) => {
           return {
             name: seller.name,
+            products: seller.products,
             address: seller.address,
-            city: seller.address,
+            city: seller.city,
           };
         });
       })
@@ -42,6 +58,9 @@ export default class Results extends React.Component {
           ],
         };
       });
+
+    console.log(response);
+
     this.setState({
       sellers: response,
     });
@@ -51,7 +70,7 @@ export default class Results extends React.Component {
     var list = [];
 
     if (this.state.sellers) {
-      Object.keys(this.state.sellers).forEach((seller, i) => {
+      this.state.sellers.forEach((seller, i) => {
         list.push(
           <li key={i}>
             <SellerCard name={seller.name} products={seller.products} />
