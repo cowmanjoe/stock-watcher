@@ -4,16 +4,104 @@ import TextField from "@material-ui/core/TextField";
 export default class SellerForm extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      name: "",
+      address: "",
+      city: "",
+      latitude: "",
+      longitude: "",
+      nameError: false,
+      addressError: false,
+      cityError: false,
+      latError: false,
+      longError: false,
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    if (event.key == "Enter") {
+      if (!this.state.name) {
+        this.setState({ nameError: true });
+      } else {
+        this.setState({ nameError: false });
+      }
+      if (!this.state.address) {
+        this.setState({ addressError: true });
+      } else {
+        this.setState({ addressError: false });
+      }
+      if (!this.state.city) {
+        this.setState({ cityError: true });
+      } else {
+        this.setState({ cityError: false });
+      }
+      if (!this.state.latitude) {
+        this.setState({ latError: true });
+      } else {
+        this.setState({ latError: false });
+      }
+      if (!this.state.longitude) {
+        this.setState({ longError: true });
+      } else {
+        this.setState({ longError: false });
+      }
+
+      if (
+        this.state.name &&
+        this.state.address &&
+        this.state.city &&
+        this.state.latitude &&
+        this.state.longitude
+      ) {
+        console.log("success");
+        //post request here
+      }
+    }
   }
 
   render() {
     return (
       <form noValidate autoComplete="off">
-        <TextField label="Store Name" variant="outlined" />
-        <TextField label="Address" variant="outlined" />
-        <TextField label="City" variant="outlined" />
-        <TextField label="Latitude" variant="outlined" />
-        <TextField label="Longitude" variant="outlined" />
+        <TextField
+          label="Store Name"
+          variant="outlined"
+          onChange={(e) => this.setState({ name: e.target.value })}
+          onKeyUp={this.handleSubmit}
+          error={this.state.nameError}
+        />
+        <TextField
+          label="Address"
+          variant="outlined"
+          onChange={(e) => this.setState({ address: e.target.value })}
+          onKeyUp={this.handleSubmit}
+          error={this.state.addressError}
+        />
+        <TextField
+          label="City"
+          variant="outlined"
+          onKeyUp={this.handleSubmit}
+          error={this.state.cityError}
+          onChange={(e) => this.setState({ city: e.target.value })}
+        />
+        <TextField
+          label="Latitude"
+          variant="outlined"
+          error={this.state.latError}
+          type="number"
+          onKeyUp={this.handleSubmit}
+          onChange={(e) => this.setState({ latitude: e.target.value })}
+        />
+        <TextField
+          label="Longitude"
+          variant="outlined"
+          type="number"
+          onKeyUp={this.handleSubmit}
+          error={this.state.longError}
+          onChange={(e) => this.setState({ longitude: e.target.value })}
+        />
       </form>
     );
   }
