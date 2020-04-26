@@ -21,7 +21,7 @@ const App = (
       <div>
         <Route exact path="/" component={Home} />
         <Route exact path="/search_items" component={SearchItems} />
-        <Route exact path="/search_items/:item" component={Results} />
+        <Route exact path="/search_items/results/:item" component={Results} />
         <Route exact path="/sellers" component={SellerInfo} />
         <Route exact path="/sellers/focus/:id" component={SellerFocus} />
         <Route exact path="/sellers/new" component={SellerForm} />
