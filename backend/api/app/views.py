@@ -72,8 +72,24 @@ class SellerList(generics.ListAPIView):
         
         latitude = float(tempLatitude)
         longitude = float(tempLongitude)
+        
+        inventory_report_name = InventoryReport.objects.filter(product__name__contains=product).\
+        exclude(level="OUT_OF_STOCK")
 
-        Seller_distance = Seller.objects.filter(product__name__contains=product).annotate(ordering=(F('latitude') - latitude) *  (F('latitude') - latitude)
+        inventory_report_type = InventoryReport.objects.filter(product__product_type__contains=product).\
+        exclude(level="OUT_OF_STOCK")
+    
+        for i_r_n in inventory_report_name:
+            i_r_n.seller.inventory_reports.filter(product__name=product)
+            seller_ids.append(i_r_n.seller.id)
+
+        for i_r_t in inventory_report_type:
+            i_r_t.seller.inventory_reports.filter(product__product_type=product)
+            seller_ids.append(i_r_t.seller.id)
+
+        sellers = Seller.objects.filter(id__in=seller_ids)
+
+        Seller_distance = sellers.annotate(ordering=(F('latitude') - latitude) *  (F('latitude') - latitude)
          + (F('longitude') - longitude) *  (F('longitude') - longitude)).order_by('ordering')
         
-        return  Seller_distance
+        return Seller_distance
