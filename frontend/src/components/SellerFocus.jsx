@@ -76,9 +76,10 @@ export default class SellerFocus extends React.Component {
   render() {
     return (
       <div>
-        <h1>Title: {this.state.seller.name}</h1>
+        <h1>{this.state.seller.name || "Seller not found"}</h1>
         <h2>
-          Address: {this.state.seller.address}, {this.state.seller.city}
+          {this.state.seller.address ? this.state.seller.address + "," : null}{" "}
+          {this.state.seller.city || null}
         </h2>
         <div>{this.renderProducts()}</div>
       </div>

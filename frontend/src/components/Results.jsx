@@ -1,11 +1,13 @@
 import React from "react";
 import SellerCard from "./SellerCard";
+import CircularProgress from "@material-ui/core/CircularProgress";
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: "",
       sellers: [],
+      loading: true,
     };
 
     this.renderSellers = this.renderSellers.bind(this);
@@ -58,6 +60,7 @@ export default class Results extends React.Component {
 
     this.setState({
       sellers: sellers,
+      loading: false,
     });
   }
 
@@ -86,7 +89,11 @@ export default class Results extends React.Component {
     return (
       <div>
         <h1>{`Search Results for ${this.state.id}`}</h1>
-        {this.renderSellers() || "No results were found :("}
+        {this.state.loading ? (
+          <CircularProgress />
+        ) : (
+          this.renderSellers() || "No results were found :("
+        )}
       </div>
     );
   }
