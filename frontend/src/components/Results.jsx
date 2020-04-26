@@ -1,7 +1,7 @@
 import React from "react";
 import SellerCard from "./SellerCard";
 import CircularProgress from "@material-ui/core/CircularProgress";
-//import { geolocated } from "react-geolocated";
+import Button from "@material-ui/core/Button";
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
@@ -166,11 +166,12 @@ export default class Results extends React.Component {
     return Object.keys(this.sortByOptions).map((sortByOption) => {
       var sortByOptionValue = this.sortByOptions[sortByOption];
       return (
-        <li
+        <Button
           key={sortByOptionValue}
+          style={{ border: "2px solid black", margin: "10px" }}
           onClick={this.handleSortByChange.bind(this, sortByOptionValue)}>
           {sortByOption}
-        </li>
+        </Button>
       );
     });
   }
@@ -195,10 +196,16 @@ export default class Results extends React.Component {
     return <ul style={{ listStyleType: "none" }}>{list}</ul>;
   }
   render() {
+    let sortByLabel = <div>Sort By:</div>;
     return (
       <div>
         <h1>{`Search Results for ${this.state.id}`}</h1>
-        <ul>
+        <ul
+          style={{
+            listStyleType: "none",
+            padding: "10px",
+          }}>
+          {this.state.sellers.length == 0 ? null : sortByLabel}
           {this.state.sellers.length == 0 ? null : this.renderSortByOptions()}
         </ul>
         {this.state.loading ? (
