@@ -6,9 +6,6 @@ import Tab from "@material-ui/core/Tab";
 export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // value: ,
-    };
     this.handleChange = this.handleChange.bind(this);
   }
 
