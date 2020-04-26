@@ -25,5 +25,6 @@ router.register(r'inventory_reports', views.InventoryReportViewSet, basename='in
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('search/', views.SellerList.as_view())
 ]
