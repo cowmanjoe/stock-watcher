@@ -58,7 +58,7 @@ export default class SellerForm extends React.Component {
       ) {
         console.log("success");
 
-          fetch("http://localhost:8000/sellers/", {
+          fetch("https://beaming-source-275400.wl.r.appspot.com/sellers/", {
             method: "post",
             headers: {
               'Accept': 'application/json',

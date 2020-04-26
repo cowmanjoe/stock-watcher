@@ -31,14 +31,14 @@ export default class Results extends React.Component {
     try {
       if (lat && lon) {
         response = await fetch(
-          `http://localhost:8000/search/?product=${this.state.id}&lat=${lat}&lon=${lon}`,
+          `https://beaming-source-275400.wl.r.appspot.com/search/?product=${this.state.id}&lat=${lat}&lon=${lon}`,
           {
             headers: { "Content-Type": "application/json" },
           }
         );
       } else {
         response = await fetch(
-          `http://localhost:8000/search/?product=${this.state.id}`,
+          `https://beaming-source-275400.wl.r.appspot.com/search/?product=${this.state.id}`,
           {
             headers: { "Content-Type": "application/json" },
           }
@@ -66,7 +66,7 @@ export default class Results extends React.Component {
     let sellers;
     let response;
     try {
-      response = await fetch(`http://localhost:8000/search/?product=${item}`, {
+      response = await fetch(`https://beaming-source-275400.wl.r.appspot.com/search/?product=${item}`, {
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {
@@ -117,7 +117,7 @@ export default class Results extends React.Component {
           let response;
           try {
             response = await fetch(
-              `http://localhost:8000/search/?product=${this.state.id}&lat=${position.coords.latitude}&lon=${position.coords.longitude}`,
+              `https://beaming-source-275400.wl.r.appspot.com/search/?product=${this.state.id}&lat=${position.coords.latitude}&lon=${position.coords.longitude}`,
               {
                 headers: { "Content-Type": "application/json" },
               }

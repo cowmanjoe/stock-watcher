@@ -18,7 +18,7 @@ export default class SellerResults extends React.Component {
     let sellers;
     let response;
     try {
-      response = await fetch("http://localhost:8000/sellers/", {
+      response = await fetch("https://beaming-source-275400.wl.r.appspot.com/sellers/", {
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {

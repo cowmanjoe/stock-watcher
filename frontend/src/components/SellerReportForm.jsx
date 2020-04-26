@@ -59,7 +59,7 @@ export default class SellerReportForm extends React.Component {
         this.state.value
       ) {
 
-        fetch("http://localhost:8000/inventory_reports", {
+        fetch("https://beaming-source-275400.wl.r.appspot.com/inventory_reports", {
             method: "post",
             headers: {
               'Accept': 'application/json',

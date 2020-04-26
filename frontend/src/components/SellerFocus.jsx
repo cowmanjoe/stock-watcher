@@ -18,7 +18,7 @@ export default class SellerFocus extends React.Component {
     let seller;
     let response;
     try {
-      response = await fetch(`http://localhost:8000/sellers/${id}/`, {
+      response = await fetch(`https://beaming-source-275400.wl.r.appspot.com/sellers/${id}/`, {
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {
