@@ -54,6 +54,7 @@ export default class Results extends React.Component {
   }
 
   async componentDidMount() {
+    //gets stores in alphabetical order on page load
     if ("geolocation" in navigator) {
       this.setState({ geolocationAllowed: true });
     } else {
@@ -72,11 +73,8 @@ export default class Results extends React.Component {
       console.log(err);
     }
 
-    console.log(response);
-
     let jsonResponse = await response.json();
 
-    console.log(jsonResponse);
     if (!jsonResponse) {
       sellers = [];
     } else {
@@ -92,13 +90,12 @@ export default class Results extends React.Component {
       }));
     }
 
+    //caches results for when sortBy switches are done
     this.setState({
       alphabetical: sellers,
       sellers: sellers,
       loading: false,
     });
-
-    console.log(this.state.alphabetical);
   }
 
   async handleSortByChange(sortByOption) {
@@ -107,14 +104,13 @@ export default class Results extends React.Component {
     }
 
     this.setState({ sortBy: sortByOption });
-    console.log(sortByOption);
     if (sortByOption == "nearby") {
+      //uses cached data if it exists
       if (this.state.nearby.length != 0) {
-        console.log(this.state.nearby);
-
         this.setState({ sellers: this.state.nearby });
         return;
       }
+      //otherwise make a request
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           let sellers;
@@ -133,7 +129,6 @@ export default class Results extends React.Component {
 
           let jsonResponse = await response.json();
 
-          console.log(jsonResponse);
           if (!jsonResponse) {
             sellers = [];
           } else {
@@ -154,7 +149,11 @@ export default class Results extends React.Component {
           });
         },
         () => {
-          this.setState({ geolocationAllowed: false });
+          this.setState({
+            geolocationAllowed: false,
+            sellers: this.state.alphabetical,
+            sortBy: "alphabetical",
+          });
           console.log("blocked");
         }
       );
