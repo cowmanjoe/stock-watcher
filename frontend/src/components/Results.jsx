@@ -1,7 +1,7 @@
 import React from "react";
 import SellerCard from "./SellerCard";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { geolocated } from "react-geolocated";
+//import { geolocated } from "react-geolocated";
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
