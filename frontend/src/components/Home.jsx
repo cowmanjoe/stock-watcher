@@ -3,6 +3,7 @@ import React from "react";
 import { createStyles, withStyles } from "@material-ui/core/styles";
 import ColorTheme from "../styles/colorTheme";
 import { Container, Typography } from "@material-ui/core";
+import Logo from "../components/save-on-foods-winnipeg.jpg"
 
 class Home extends React.Component {
   constructor(props) {
@@ -11,41 +12,19 @@ class Home extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Container className={classes.background}>
+      <Container className={classes.background} style={{topMargin: 20, leftMargin:50, rightMargin: 50}}>
         <Typography className={classes.text}>Stock Watch</Typography>
-        <Typography className={classes.body}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum
+        <Typography className={classes.body} style={{fontSize:20}}>
+          Stock Watch is a website that allows you to find out the current stock
+          levels of store items that you need now!  By searching by item or seller, one
+          can deduce what items are available, which stores currently are carrying them
+          and the current in-store stock levels.  Additionally, one can filter search
+          entries by distance as well as alphabetically, to ensure a store that you prefer,
+          or a store close by, carries the item before you make the trek to buy it.
         </Typography>
-        <Typography className={classes.body}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum
-        </Typography>
-        <Typography className={classes.body}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum
-        </Typography>
+        <img src={Logo}>
+          
+        </img>
       </Container>
     );
   }
