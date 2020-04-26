@@ -5,7 +5,9 @@ import Button from "@material-ui/core/Button";
 import config from "../config";
 import SearchBar from "./SearchBar";
 import BackButton from "./BackButton";
-export default class Results extends React.Component {
+import Box from "@material-ui/core/Box";
+import { withStyles, createStyles } from "@material-ui/core";
+class Results extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -177,9 +179,10 @@ export default class Results extends React.Component {
     return <ul style={{ listStyleType: "none" }}>{list}</ul>;
   }
   render() {
+    let { classes } = this.props;
     let sortByLabel = <div>Sort By:</div>;
     return (
-      <div>
+      <Box className={classes.container}>
         <BackButton />
         <SearchBar getResults={(item) => (window.location.href = `${item}`)} />
         <h1>{`Search Results for ${this.state.id}`}</h1>
@@ -196,7 +199,17 @@ export default class Results extends React.Component {
         ) : (
           this.renderSellers() || "No results were found :("
         )}
-      </div>
+      </Box>
     );
   }
 }
+
+const materialUiStyles = createStyles({
+  container: {
+    height: "100vh",
+    justifyContent: "center",
+    textAlign: "justify",
+    alignContent: "center",
+  },
+});
+export default withStyles(materialUiStyles)(Results);
