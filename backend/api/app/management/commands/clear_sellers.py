@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from api.app.models import Seller as Seller
+from api.app import util
 
 class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
@@ -14,7 +15,7 @@ class Command(BaseCommand):
 
             # If inputted "ALL", delete all current sellers
             if seller_name == "ALL":
-                Seller.objects.all().delete()
+                util.clear_database()
                 print("Removed all Sellers")
                 break
             
@@ -28,7 +29,7 @@ class Command(BaseCommand):
             except Seller.MultipleObjectsReturned:
                 sellers = Seller.objects.filter(name=seller_name)
                 sellers.delete()
-                print('Multiple Sellers with the name "%s" exist, All have been removed' %seller_name)
+                print('Multiple Sellers with the name "%s" exist, All have been removed' % seller_name)
 
             seller.opened = False
             seller.save()

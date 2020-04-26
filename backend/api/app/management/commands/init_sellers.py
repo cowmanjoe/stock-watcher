@@ -1,5 +1,4 @@
-import datetime
-import pytz
+from api.app import util
 
 from django.core.management.base import BaseCommand
 from api.app.models import Seller as Seller, InventoryReport, Product
@@ -16,22 +15,7 @@ class Command(BaseCommand):
         # Initialize Dummy Store Data
         for seller_name in options["seller_names"]:
             if seller_name == "RANDOM":
-                for i in range(10):
-                    seller = mixer.blend(Seller)
-
-                    for j in range(3):
-                        product = mixer.blend(Product)
-
-                        mixer.blend(
-                            InventoryReport,
-                            seller=seller,
-                            timestamp=datetime.datetime.now(tz=pytz.UTC),
-                            product=product
-                        )
-                    print(seller.id)
-
-                print("Initialized Dummy Data")
-                break
+                util.initialize_database()
 
             # If not random, add the desired sellers        
             seller = mixer.blend(Seller, name=seller_name)

@@ -22,5 +22,5 @@ class SellerSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Seller
-        fields = ['name', 'address', 'city', 'latitude', 'longitude', 'inventory_reports']
+        fields = ['id', 'name', 'address', 'city', 'latitude', 'longitude', 'inventory_reports']
         depth = 3
