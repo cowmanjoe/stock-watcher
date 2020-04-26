@@ -67,30 +67,14 @@ export default class SellerReportForm extends React.Component {
             },
       
             body: JSON.stringify({
-              timestamp: "123",
-              product: "Charmin 4 Ply",
-              seller: "Toilet Paper",
-              level: "High",
+              seller_id: "123",
+              product_name: "Charmin 4 Ply",
+              product_type: "Toilet Paper",
+              level: "High"
             })
 
           }).then(response => response.json())
-
-        // let response;
-        // try {
-        //   response = await fetch("http://localhost:8000/inventory_reports", {
-        //     method: "post",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({
-        //             seller_id: "123",
-        //             product_name: "Charmin 4 Ply",
-        //             product_type: "Toilet Paper",
-        //             level: "High"
-        //           })
-        //   });
-        // } catch (err) {
-        //   console.log(err);
-        // }
-    
+   
       }
     }
   }

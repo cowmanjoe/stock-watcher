@@ -9,13 +9,10 @@ import SellerForm from './components/SellerForm';
 import SellerReportForm from './components/SellerReportForm.jsx';
 import SellerInfo from './components/SellerInfo';
 import Navbar from "./components/Navbar";
-<<<<<<< HEAD
 import SearchSellers from "./components/SearchSellers";
 import SellerResults from "./components/SellerResults";
-
-=======
 import SellerFocus from './components/SellerFocus';
->>>>>>> bb14b96e4cae4d3fcb64af2c60b419d0c8930eee
+
 let value = 1;
 
 const App = (
