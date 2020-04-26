@@ -23,7 +23,7 @@ export default class SellerCard extends React.Component {
   render() {
     return (
       <Paper elevation={3} variant="outlined">
-        <Link to={`/sellers/${this.props.seller.id}`}>
+        <Link to={`/sellers/focus/${this.props.seller.id}`}>
           <div className="storeName"> Name: {this.props.seller.name}</div>
         </Link>
         <div className="address">Address: {this.props.seller.address}</div>

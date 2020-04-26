@@ -13,18 +13,16 @@ import SearchSellers from "./components/SearchSellers";
 import SellerResults from "./components/SellerResults";
 import SellerFocus from './components/SellerFocus';
 
-let value = 1;
-
 const App = (
   <div style={{ fontFamily: "Roboto" }}>
     <Router>
-      <Navbar value={value} />
+      <Navbar />
 
       <div>
         <Route exact path="/" component={Home} />
         <Route exact path="/results/:item" component={Results} />
         <Route exact path="/sellers" component={SellerInfo} />
-        <Route exact path="/sellers/:id" component={SellerFocus} />
+        <Route exact path="/sellers/focus/:id" component={SellerFocus} />
         <Route exact path="/sellers/new" component={SellerForm} />
         <Route exact path="/sellers/report" component={SellerReportForm} />
         <Route exact path="/search_sellers" component={SearchSellers}/>
