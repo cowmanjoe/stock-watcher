@@ -54,14 +54,14 @@ class SellerList(generics.ListAPIView):
         if product is None:
             if name is not None:
                 if  tempLongitude is None or tempLatitude is None:
-                    temp = Seller.objects.filter(name__contains=name)
+                    temp = Seller.objects.filter(name__search=name)
                     return temp.order_by('name')
                 else:
                      
                     latitude = float(tempLatitude)
                     longitude = float(tempLongitude)
                     
-                    names = Seller.objects.filter(name__contains=name)
+                    names = Seller.objects.filter(name__search=name)
                     Seller_distance = names.annotate(ordering=(F('latitude') - latitude) *  (F('latitude') - latitude)
                     + (F('longitude') - longitude) *  (F('longitude') - longitude)).order_by('ordering')
                     
