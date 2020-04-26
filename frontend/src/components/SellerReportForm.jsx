@@ -7,6 +7,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
 import config from "../config";
+import BackButton from "./BackButton";
 
 export default class SellerReportForm extends React.Component {
   constructor(props) {
@@ -84,6 +85,8 @@ export default class SellerReportForm extends React.Component {
   render() {
     return (
       <div>
+        <BackButton />
+
         <form noValidate autoComplete="off">
           <FormLabel>Inventory Report</FormLabel>
           <TextField

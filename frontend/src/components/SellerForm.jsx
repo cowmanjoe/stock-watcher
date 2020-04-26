@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import config from "../config";
+import BackButton from "./BackButton";
 
 import TextField from "@material-ui/core/TextField";
 export default class SellerForm extends React.Component {
@@ -58,7 +59,6 @@ export default class SellerForm extends React.Component {
     ) {
       console.log("success");
 
-
       fetch(`${config.BACKEND_URL}/sellers/`, {
         method: "post",
         headers: {
@@ -87,6 +87,8 @@ export default class SellerForm extends React.Component {
   render() {
     return (
       <div>
+        <BackButton />
+
         <form noValidate autoComplete="off">
           <TextField
             label="Store Name"

@@ -4,6 +4,7 @@ import SellerCard from "./SellerCard";
 import config from "../config";
 import SearchBar from "./SearchBar";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import BackButton from "./BackButton";
 
 export default class SellerResults extends React.Component {
   constructor(props) {
@@ -109,9 +110,12 @@ export default class SellerResults extends React.Component {
     let sellers;
     let response;
     try {
-      response = await fetch(`${config.BACKEND_URL}/sellers_search/?name=${item}`, {
-        headers: { "Content-Type": "application/json" },
-      });
+      response = await fetch(
+        `${config.BACKEND_URL}/sellers_search/?name=${item}`,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
     } catch (err) {
       console.log(err);
     }

@@ -1,5 +1,7 @@
 import React from "react";
 import SearchBar from "./SearchBar";
+import BackButton from "./BackButton";
+
 export default class SearchItems extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +15,7 @@ export default class SearchItems extends React.Component {
   render() {
     return (
       <div>
+        <BackButton />
         <SearchBar getResults={this.handleResults} />
       </div>
     );
