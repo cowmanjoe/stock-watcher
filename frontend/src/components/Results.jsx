@@ -17,40 +17,12 @@ export default class Results extends React.Component {
     };
 
     this.sortByOptions = {
-      Nearby: "nearby",
       Alphabetical: "alphabetical",
+      Nearby: "nearby",
     };
 
     this.renderSellers = this.renderSellers.bind(this);
     this.renderSortByOptions = this.renderSortByOptions.bind(this);
-    this.search = this.search.bind(this);
-  }
-
-  async search(lat, lon) {
-    let response;
-    try {
-      if (lat && lon) {
-        response = await fetch(
-          `http://localhost:8000/search/?product=${this.state.id}&lat=${lat}&lon=${lon}`,
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-      } else {
-        response = await fetch(
-          `http://localhost:8000/search/?product=${this.state.id}`,
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-      }
-      console.log(response);
-
-      return response;
-    } catch (err) {
-      console.log(err);
-      return {};
-    }
   }
 
   async componentDidMount() {
@@ -81,7 +53,6 @@ export default class Results extends React.Component {
       sellers = jsonResponse.results.map((seller) => ({
         id: seller.id,
         name: seller.name,
-        products: seller.products,
         address: seller.address,
         city: seller.city,
         latitude: seller.latitude,
@@ -107,6 +78,8 @@ export default class Results extends React.Component {
     if (sortByOption == "nearby") {
       //uses cached data if it exists
       if (this.state.nearby.length != 0) {
+        console.log("cached data");
+
         this.setState({ sellers: this.state.nearby });
         return;
       }
@@ -117,7 +90,7 @@ export default class Results extends React.Component {
           let response;
           try {
             response = await fetch(
-              `http://localhost:8000/search/?product=${this.state.id}&lat=${position.coords.latitude}&lon=${position.coords.longitude}`,
+              `http://localhost:8000/search/?product=${this.state.id}&lat=${position.coords.latitude}&long=${position.coords.longitude}`,
               {
                 headers: { "Content-Type": "application/json" },
               }
@@ -128,6 +101,9 @@ export default class Results extends React.Component {
           }
 
           let jsonResponse = await response.json();
+          console.log("RESPONSE: ");
+
+          console.log(jsonResponse);
 
           if (!jsonResponse) {
             sellers = [];
@@ -135,7 +111,6 @@ export default class Results extends React.Component {
             sellers = jsonResponse.results.map((seller) => ({
               id: seller.id,
               name: seller.name,
-              products: seller.products,
               address: seller.address,
               city: seller.city,
               latitude: seller.latitude,
@@ -143,6 +118,7 @@ export default class Results extends React.Component {
               inventory_reports: seller.inventory_reports,
             }));
           }
+          console.log(sellers);
           this.setState({
             nearby: sellers,
             sellers: sellers,
