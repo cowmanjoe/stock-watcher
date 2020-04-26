@@ -48,7 +48,7 @@ export default class SellerResults extends React.Component {
           let response;
           try {
             response = await fetch(
-              `${config.BACKEND_URL}/sellers/?name=${this.state.id}&lat=${position.coords.latitude}&long=${position.coords.longitude}`,
+              `${config.BACKEND_URL}/sellers_search/?name=${this.state.id}&lat=${position.coords.latitude}&long=${position.coords.longitude}`,
               {
                 headers: { "Content-Type": "application/json" },
               }
@@ -109,7 +109,7 @@ export default class SellerResults extends React.Component {
     let sellers;
     let response;
     try {
-      response = await fetch(`${config.BACKEND_URL}/sellers/?name=${item}`, {
+      response = await fetch(`${config.BACKEND_URL}/sellers_search/?name=${item}`, {
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {
