@@ -4,6 +4,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Button from "@material-ui/core/Button";
 import config from "../config";
 import SearchBar from "./SearchBar";
+import BackButton from "./BackButton";
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
@@ -48,7 +49,8 @@ export default class Results extends React.Component {
       console.log(err);
     }
 
-    let jsonResponse = await response.json();
+    let jsonResponse;
+    if (response) jsonResponse = await response.json();
 
     if (!jsonResponse) {
       sellers = [];
@@ -178,6 +180,7 @@ export default class Results extends React.Component {
     let sortByLabel = <div>Sort By:</div>;
     return (
       <div>
+        <BackButton />
         <SearchBar getResults={(item) => (window.location.href = `${item}`)} />
         <h1>{`Search Results for ${this.state.id}`}</h1>
         <ul
