@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import config from "../config";
+import Container from '@material-ui/core/Container';
 import BackButton from "./BackButton";
 
 import TextField from "@material-ui/core/TextField";
@@ -86,6 +87,8 @@ export default class SellerForm extends React.Component {
 
   render() {
     return (
+      <Container fixed>
+      <div style = {{marginTop: 30}}>
       <div>
         <BackButton />
 
@@ -129,10 +132,12 @@ export default class SellerForm extends React.Component {
           />
         </form>
 
-        <Button onClick={this.submit} color="primary" variant="contained">
+        <Button onClick={this.submit} color="primary" variant="contained" style={{marginTop: 10}}>
           Submit
         </Button>
       </div>
+      </div>
+      </Container>
     );
   }
 }

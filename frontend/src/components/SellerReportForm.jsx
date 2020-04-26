@@ -7,6 +7,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
 import config from "../config";
+import Container from '@material-ui/core/Container';
+
 import BackButton from "./BackButton";
 
 export default class SellerReportForm extends React.Component {
@@ -84,6 +86,8 @@ export default class SellerReportForm extends React.Component {
 
   render() {
     return (
+      <Container top>
+      <div style = {{marginTop: 30}}>
       <div>
         <BackButton />
 
@@ -139,6 +143,8 @@ export default class SellerReportForm extends React.Component {
           Submit
         </Button>
       </div>
+      </div>
+      </Container>
     );
   }
 }
