@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import config from "../config";
 
 import TextField from "@material-ui/core/TextField";
 export default class SellerForm extends React.Component {
@@ -58,7 +59,7 @@ export default class SellerForm extends React.Component {
       ) {
         console.log("success");
 
-          fetch("https://beaming-source-275400.wl.r.appspot.com/sellers/", {
+          fetch(`${config.BACKEND_URL}/sellers/`, {
             method: "post",
             headers: {
               'Accept': 'application/json',

@@ -6,6 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
+import config from "../config";
 
 export default class SellerReportForm extends React.Component {
   constructor(props) {
@@ -59,7 +60,7 @@ export default class SellerReportForm extends React.Component {
         this.state.value
       ) {
 
-        fetch("https://beaming-source-275400.wl.r.appspot.com/inventory_reports", {
+        fetch(`${config.BACKEND_URL}/inventory_reports`, {
             method: "post",
             headers: {
               'Accept': 'application/json',

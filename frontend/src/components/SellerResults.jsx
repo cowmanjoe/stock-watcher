@@ -1,5 +1,7 @@
 import React from "react";
 import SellerCard from "./SellerCard";
+import config from "../config";
+
 export default class SellerResults extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +20,7 @@ export default class SellerResults extends React.Component {
     let sellers;
     let response;
     try {
-      response = await fetch("https://beaming-source-275400.wl.r.appspot.com/sellers/", {
+      response = await fetch(`${config.BACKEND_URL}/sellers/`, {
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {
