@@ -45,11 +45,14 @@ class SellerList(generics.ListAPIView):
 
         tempLatitude = (self.request.query_params.get('lat', None))
         tempLongitude = (self.request.query_params.get('long', None))
-       
+
+        name = (self.request.query_params.get('long', None))
         # orderBy = self.request.query_params.get('orderBy', None)
 
         if product is None:
-            return Seller.objects.all().order_by('name')
+            if name is not None:
+                return Seller.objects.all().filter(Seller_name__contains=name)
+            return Seller.objects.all()
 
         if  tempLongitude is None or tempLatitude is None:
             inventory_report_name = InventoryReport.objects.filter(product__name__contains=product).\
