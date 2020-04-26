@@ -206,13 +206,3 @@ export default class Results extends React.Component {
     );
   }
 }
-
-const materialUiStyles = createStyles({
-  container: {
-    height: "100vh",
-    justifyContent: "center",
-    textAlign: "justify",
-    alignContent: "center",
-  },
-});
-export default withStyles(materialUiStyles)(Results);
