@@ -43,6 +43,7 @@ export default class Results extends React.Component {
       sellers = [];
     } else {
       sellers = jsonResponse.results.map((seller) => ({
+        id: seller.id,
         name: seller.name,
         products: seller.products,
         address: seller.address,
