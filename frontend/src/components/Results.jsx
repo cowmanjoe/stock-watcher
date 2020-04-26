@@ -18,7 +18,7 @@ export default class Results extends React.Component {
     let sellers;
     let response;
     try {
-      response = await fetch("http://localhost:8000/sellers/", {
+      response = await fetch(`http://localhost:8000/search/?product=${item}`, {
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {
@@ -40,19 +40,7 @@ export default class Results extends React.Component {
 
     console.log(jsonResponse);
     if (!jsonResponse) {
-      sellers = [
-        {
-          name: "Sample",
-          products: [
-            {
-              name: "Milk",
-              stock: "Low",
-            },
-          ],
-          address: "123 Main St",
-          city: "Cityville",
-        },
-      ];
+      sellers = [];
     } else {
       sellers = jsonResponse.results.map((seller) => ({
         name: seller.name,
@@ -85,13 +73,19 @@ export default class Results extends React.Component {
       });
     }
 
+    console.log(list);
+
+    if (!list.length) {
+      return null;
+    }
+
     return <ul style={{ listStyleType: "none" }}>{list}</ul>;
   }
   render() {
     return (
       <div>
-        <h1>{`Searching for ${this.state.id}`}</h1>
-        {this.renderSellers()}
+        <h1>{`Search Results for ${this.state.id}`}</h1>
+        {this.renderSellers() || "No results were found :("}
       </div>
     );
   }
