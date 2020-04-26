@@ -1,5 +1,6 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
+import { Link } from "react-router-dom";
 export default class SellerCard extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,9 @@ export default class SellerCard extends React.Component {
   render() {
     return (
       <Paper elevation={3} variant="outlined">
-        <div className="storeName">Name: {this.props.seller.name}</div>
+        <Link to={`/sellers/${this.props.seller.id}`}>
+          <div className="storeName"> Name: {this.props.seller.name}</div>
+        </Link>
         <div className="address">Address: {this.props.seller.address}</div>
         <div className="city">City: {this.props.seller.city}</div>
         <div className="productList">Products: {this.renderProducts()}</div>
