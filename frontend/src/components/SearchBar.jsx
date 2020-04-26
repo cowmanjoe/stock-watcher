@@ -1,5 +1,6 @@
 import React from "react";
-
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -45,17 +46,12 @@ class SearchBar extends React.Component {
           />
         </div>
         <div>
-          <a
+          <Button
             onClick={this.handleSearch}
-            style={{
-              border: "2px solid black",
-              borderRadius: "5px",
-              marginTop: "150px",
-              margin: "15px",
-              padding: "10px",
-            }}>
-            Search
-          </a>
+            color="primary"
+            variant="contained">
+            Submit
+          </Button>
         </div>
       </div>
     );

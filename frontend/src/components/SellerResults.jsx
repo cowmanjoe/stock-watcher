@@ -48,7 +48,7 @@ export default class SellerResults extends React.Component {
           let response;
           try {
             response = await fetch(
-              `http://localhost:8000/sellers/?name=${this.state.id}&lat=${position.coords.latitude}&long=${position.coords.longitude}`,
+              `${config.BACKEND_URL}/sellers/?name=${this.state.id}&lat=${position.coords.latitude}&long=${position.coords.longitude}`,
               {
                 headers: { "Content-Type": "application/json" },
               }
