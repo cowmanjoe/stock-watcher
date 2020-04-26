@@ -8,7 +8,7 @@ export default class SearchItems extends React.Component {
   }
 
   handleResults(item) {
-    window.location += `/${item}`;
+    window.location += `/results/${item}`;
   }
   render() {
     return (

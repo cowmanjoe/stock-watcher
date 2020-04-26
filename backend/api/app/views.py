@@ -12,6 +12,8 @@ from rest_framework import generics
 from django.db.models import F
 
 
+
+
 class SellerViewSet(viewsets.ModelViewSet):
     queryset = Seller.objects.all()
     serializer_class = SellerSerializer
@@ -68,10 +70,10 @@ class SellerList(generics.ListAPIView):
             return Seller.objects.order_by('name')
 
         if  tempLongitude is None or tempLatitude is None:
-            inventory_report_name = InventoryReport.objects.filter(product__name__contains=product).\
+            inventory_report_name = InventoryReport.objects.filter(product__name__search=product).\
             exclude(level="OUT_OF_STOCK")
 
-            inventory_report_type = InventoryReport.objects.filter(product__product_type__contains=product).\
+            inventory_report_type = InventoryReport.objects.filter(product__product_type__search=product).\
             exclude(level="OUT_OF_STOCK")
         
             for i_r_n in inventory_report_name:
@@ -89,10 +91,10 @@ class SellerList(generics.ListAPIView):
         latitude = float(tempLatitude)
         longitude = float(tempLongitude)
         
-        inventory_report_name = InventoryReport.objects.filter(product__name__contains=product).\
+        inventory_report_name = InventoryReport.objects.filter(product__name__search=product).\
         exclude(level="OUT_OF_STOCK")
 
-        inventory_report_type = InventoryReport.objects.filter(product__product_type__contains=product).\
+        inventory_report_type = InventoryReport.objects.filter(product__product_type__search=product).\
         exclude(level="OUT_OF_STOCK")
     
         for i_r_n in inventory_report_name:
