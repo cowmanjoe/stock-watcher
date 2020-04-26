@@ -1,10 +1,5 @@
-### Testing locally with the GCP Database
-1. [Install and initialize the Cloud SDK](https://cloud.google.com/sdk/docs).
-2. [Enable the Datastore, Pub/Sub, Cloud Storage JSON, Cloud Logging, and Google+ APIs](https://console.cloud.google.com/flows/enableapi?apiid=datastore.googleapis.com,pubsub,storage_api,logging,plus&_ga=2.200698478.1322426890.1587847446-1301243043.1587847446).
-3. Open command line.
-4. Run `gcloud auth application-default login`.
-5. Run `gcloud services enable sqladmin`.
-6. Download Cloud SQL proxy ([download for Windows 64-bit](https://dl.google.com/cloudsql/cloud_sql_proxy_x64.exe))
-7. Navigate to where the folder was downloaded in a terminal, and then run `cloud_sql_proxy.exe -instances="[YOUR_INSTANCE_CONNECTION_NAME]"=tcp:3306`.
-8. Get `config.py` file from Cowan and put it in `backend` directory. 
-9. In the `backend` folder, start the server by running `python manage.py runserver`. 
+### Stock Watcher
+
+During the chaos caused by COVID-19, many people may find it hard to get the groceries that they want. With so many in-demand items being swept off the shelves, and store inventories falling rapidly, it can be hard to make those shopping trips worth it. My grandmother wants to spend as little time as possible in a grocery store, as she is a high-risk individual. One time, she left to get her aspirin, but they were all sold out. Her dangerous trip to the grocery store was for naught. We decided to build this app to prevent this needless risk. Users can search through the inventories of nearby grocery stores, and see whether stocks are high or low.
+
+We learned how to build an API using Django, and deploy a backend server using Google App Engine. We hope this app can help those in need during these trying times.
