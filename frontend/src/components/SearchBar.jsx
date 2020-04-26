@@ -39,7 +39,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       
-      <div style = {{marginTop: 30}}>
+      <div style = {{marginTop: 10}}>
         <Container fixed>
         <div>
           <TextField

@@ -1,6 +1,7 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import BackButton from "./BackButton";
+import Container from '@material-ui/core/Container';
 
 export default class SearchItems extends React.Component {
   constructor(props) {
@@ -15,8 +16,10 @@ export default class SearchItems extends React.Component {
   render() {
     return (
       <div>
+        <Container fixed>
         <BackButton />
         <SearchBar getResults={this.handleResults} />
+        </Container>
       </div>
     );
   }

@@ -5,9 +5,8 @@ import Button from "@material-ui/core/Button";
 import config from "../config";
 import SearchBar from "./SearchBar";
 import BackButton from "./BackButton";
-import Box from "@material-ui/core/Box";
-import { withStyles, createStyles } from "@material-ui/core";
-class Results extends React.Component {
+import Container from "@material-ui/core/Container";
+export default class Results extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -182,24 +181,28 @@ class Results extends React.Component {
     let { classes } = this.props;
     let sortByLabel = <div>Sort By:</div>;
     return (
-      <Box className={classes.container}>
-        <BackButton />
-        <SearchBar getResults={(item) => (window.location.href = `${item}`)} />
-        <h1>{`Search Results for ${this.state.id}`}</h1>
-        <ul
-          style={{
-            listStyleType: "none",
-            padding: "10px",
-          }}>
-          {this.state.sellers.length == 0 ? null : sortByLabel}
-          {this.state.sellers.length == 0 ? null : this.renderSortByOptions()}
-        </ul>
-        {this.state.loading ? (
-          <CircularProgress />
-        ) : (
-          this.renderSellers() || "No results were found :("
-        )}
-      </Box>
+      <div>
+        <Container fixed>
+          <BackButton />
+          <SearchBar
+            getResults={(item) => (window.location.href = `${item}`)}
+          />
+          <h1>{`Search Results for ${this.state.id}`}</h1>
+          <ul
+            style={{
+              listStyleType: "none",
+              padding: "10px",
+            }}>
+            {this.state.sellers.length == 0 ? null : sortByLabel}
+            {this.state.sellers.length == 0 ? null : this.renderSortByOptions()}
+          </ul>
+          {this.state.loading ? (
+            <CircularProgress />
+          ) : (
+            this.renderSellers() || "No results were found :("
+          )}
+        </Container>
+      </div>
     );
   }
 }
