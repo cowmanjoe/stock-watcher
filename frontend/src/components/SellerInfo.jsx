@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import Container from '@material-ui/core/Container';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +9,8 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <div>
+      <Container fixed>
+      <div style = {{marginTop: 30}}>
         <div>
           {" "}
           <Button
@@ -20,7 +22,7 @@ export default class Home extends React.Component {
           </Button>
         </div>
 
-        <div>
+        <div style = {{marginTop: 10}}>
           <Button
             to="sellers/report"
             component={Link}
@@ -30,6 +32,7 @@ export default class Home extends React.Component {
           </Button>
         </div>
       </div>
+      </Container>
     );
   }
 }

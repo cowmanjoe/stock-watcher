@@ -1,7 +1,7 @@
 import React from "react";
 
 import { createStyles, withStyles } from "@material-ui/core/styles";
-//import ColorTheme from "../styles/colorTheme";
+import ColorTheme from "../styles/colorTheme";
 import { Container, Typography } from "@material-ui/core";
 
 class Home extends React.Component {

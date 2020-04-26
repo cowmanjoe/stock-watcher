@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import Container from '@material-ui/core/Container';
+
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +38,9 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div>
+      
+      <div style = {{marginTop: 30}}>
+        <Container fixed>
         <div>
           <TextField
             label="Search for Items"
@@ -45,7 +49,11 @@ class SearchBar extends React.Component {
             onChange={(e) => this.setState({ term: e.target.value })}
           />
         </div>
-        <div>
+        </Container>
+        <Container fixed>
+        <div style = {{marginTop: 10}}>
+        
+       
           <Button
             onClick={this.handleSearch}
             color="primary"
@@ -53,7 +61,9 @@ class SearchBar extends React.Component {
             Submit
           </Button>
         </div>
+        </Container>
       </div>
+    
     );
   }
 }
