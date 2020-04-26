@@ -9,6 +9,8 @@ import SellerForm from './components/SellerForm';
 import SellerReportForm from './components/SellerReportForm.jsx';
 import SellerInfo from './components/SellerInfo';
 import Navbar from "./components/Navbar";
+import SearchSellers from "./components/SearchSellers";
+import SellerResults from "./components/SellerResults";
 import SellerFocus from './components/SellerFocus';
 
 const App = (
@@ -23,7 +25,8 @@ const App = (
         <Route exact path="/sellers/focus/:id" component={SellerFocus} />
         <Route exact path="/sellers/new" component={SellerForm} />
         <Route exact path="/sellers/report" component={SellerReportForm} />
-
+        <Route exact path="/search_sellers" component={SearchSellers}/>
+        <Route exact path="/search_sellers/results/:item" component={SellerResults}/>
       </div>
     </Router>
   </div>

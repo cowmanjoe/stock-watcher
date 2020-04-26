@@ -11,6 +11,7 @@ export default class Navbar extends React.Component {
 
   handleChange(event, newValue) {
     this.setState({ value: newValue });
+   
   }
 
   render() {
@@ -37,6 +38,9 @@ export default class Navbar extends React.Component {
                 fontWeight: "bold",
                 color: "red",
               }}
+              to="/search_sellers"
+              component={NavLink}
+       
             />
             <Tab
               activeStyle={{

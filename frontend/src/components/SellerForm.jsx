@@ -71,20 +71,10 @@ export default class SellerForm extends React.Component {
               city: this.state.city,
               latitude: this.state.latitude,
               longitude: this.state.longitude,
-              inventory_reports: [
-                  {
-                      "level": "low",
-                      "product": {
-                          "name": "Charmin Ultra",
-                          "product_type": "Toilet Paper"
-                      },
-                      "timestamp": "2020-04-25T12:59:04.331697Z"
-                  }
-              ]
+              inventory_reports: []
             })
           }).then(response => response.json())
          
-
       }
     }
   }

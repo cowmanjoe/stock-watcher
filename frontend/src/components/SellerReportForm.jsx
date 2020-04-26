@@ -29,7 +29,7 @@ export default class SellerReportForm extends React.Component {
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
-  handleSubmit(event) {
+  async handleSubmit(event) {
     if (event.key == "Enter") {
       if (!this.state.id) {
         this.setState({ idError: true });
@@ -58,9 +58,8 @@ export default class SellerReportForm extends React.Component {
         this.state.product_type &&
         this.state.value
       ) {
-        console.log("success");
 
-        fetch("http://localhost:8000/sellers/", {
+        fetch("http://localhost:8000/inventory_reports", {
             method: "post",
             headers: {
               'Accept': 'application/json',
@@ -68,13 +67,14 @@ export default class SellerReportForm extends React.Component {
             },
       
             body: JSON.stringify({
-              value: this.state.name,
-              id: this.state.address,
-              product_name: this.state.city,
-              product_type: this.state.latitude,
+              seller_id: "123",
+              product_name: "Charmin 4 Ply",
+              product_type: "Toilet Paper",
+              level: "High"
             })
-            
+
           }).then(response => response.json())
+   
       }
     }
   }
