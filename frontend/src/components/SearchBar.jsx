@@ -38,7 +38,7 @@ class SearchBar extends React.Component {
       <div>
         <div>
           <input
-            placeholder="Search For Items"
+            placeholder="Enter Search Here"
             style={{ margin: "10px" }}
             onKeyUp={this.handleEnter}
             onChange={this.handleTermChange}

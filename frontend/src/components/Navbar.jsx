@@ -14,6 +14,7 @@ export default class Navbar extends React.Component {
 
   handleChange(event, newValue) {
     this.setState({ value: newValue });
+   
   }
 
   render() {
@@ -25,7 +26,7 @@ export default class Navbar extends React.Component {
             variant="fullWidth"
             onChange={this.handleChange}>
             <Tab value={1} label="Search By Item" to="/" component={Link} />
-            <Tab value={2} disabled label="Search By Store" />
+            <Tab value={2} label="Search By Store" to="/search_sellers" component={Link} />
             <Tab value={3} label="Sellers" to="/sellers" component={Link} />
           </Tabs>
         </AppBar>
