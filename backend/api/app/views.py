@@ -46,12 +46,14 @@ class SellerList(generics.ListAPIView):
         tempLatitude = (self.request.query_params.get('lat', None))
         tempLongitude = (self.request.query_params.get('long', None))
 
-        name = (self.request.query_params.get('long', None))
+        name = (self.request.query_params.get('name', None))
         # orderBy = self.request.query_params.get('orderBy', None)
 
         if product is None:
+            print("WHWHDA")
             if name is not None:
-                return Seller.objects.all().filter(Seller_name__contains=name)
+                print("WHWHDA")
+                return Seller.objects.filter(name__contains=name)
             return Seller.objects.all()
 
         if  tempLongitude is None or tempLatitude is None:
