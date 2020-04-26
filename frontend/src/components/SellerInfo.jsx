@@ -2,6 +2,8 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import Container from '@material-ui/core/Container';
+import BackButton from "./BackButton";
+
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -9,8 +11,12 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <Container fixed>
+     
       <div style = {{marginTop: 30}}>
+         <Container fixed>
+      <div>
+        <BackButton />
+
         <div>
           {" "}
           <Button
@@ -31,8 +37,10 @@ export default class Home extends React.Component {
             Report Inventory Item
           </Button>
         </div>
+        
       </div>
       </Container>
+      </div>
     );
   }
 }

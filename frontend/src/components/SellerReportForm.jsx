@@ -9,6 +9,7 @@ import Radio from "@material-ui/core/Radio";
 import config from "../config";
 import Container from '@material-ui/core/Container';
 
+import BackButton from "./BackButton";
 
 export default class SellerReportForm extends React.Component {
   constructor(props) {
@@ -87,6 +88,9 @@ export default class SellerReportForm extends React.Component {
     return (
       <Container top>
       <div style = {{marginTop: 30}}>
+      <div>
+        <BackButton />
+
         <form noValidate autoComplete="off">
           <FormLabel>Inventory Report</FormLabel>
           <TextField
@@ -138,6 +142,7 @@ export default class SellerReportForm extends React.Component {
         <Button onClick={this.submit} color="primary" variant="contained">
           Submit
         </Button>
+      </div>
       </div>
       </Container>
     );

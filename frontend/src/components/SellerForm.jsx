@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import config from "../config";
 import Container from '@material-ui/core/Container';
+import BackButton from "./BackButton";
 
 import TextField from "@material-ui/core/TextField";
 export default class SellerForm extends React.Component {
@@ -59,7 +60,6 @@ export default class SellerForm extends React.Component {
     ) {
       console.log("success");
 
-
       fetch(`${config.BACKEND_URL}/sellers/`, {
         method: "post",
         headers: {
@@ -89,6 +89,9 @@ export default class SellerForm extends React.Component {
     return (
       <Container fixed>
       <div style = {{marginTop: 30}}>
+      <div>
+        <BackButton />
+
         <form noValidate autoComplete="off">
           <TextField
             label="Store Name"
@@ -132,6 +135,7 @@ export default class SellerForm extends React.Component {
         <Button onClick={this.submit} color="primary" variant="contained" style={{marginTop: 10}}>
           Submit
         </Button>
+      </div>
       </div>
       </Container>
     );

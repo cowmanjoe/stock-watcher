@@ -1,5 +1,7 @@
 import React from "react";
 import SearchBar from "./SearchBar";
+import BackButton from "./BackButton";
+
 export default class SellerSearch extends React.Component {
   constructor(props) {
     super(props);
@@ -10,10 +12,11 @@ export default class SellerSearch extends React.Component {
   handleResults(seller) {
     window.location += `/results/${seller}`;
   }
-  
+
   render() {
     return (
       <div>
+        <BackButton />
         <SearchBar getResults={this.handleResults} />
       </div>
     );

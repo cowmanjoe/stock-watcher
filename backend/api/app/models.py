@@ -1,13 +1,6 @@
 from django.db import models
 
 
-PRODUCT_TYPE_CHOICES = [
-    ('TOILET_PAPER', 'Toilet Paper'),
-    ('BREAD', 'Bread'),
-    ('PAINKILLERS', 'Painkillers'),
-]
-
-
 INVENTORY_LEVEL_CHOICES = [
     ('OUT_OF_STOCK', 'Out of stock'),
     ('LOW', 'Low'),
@@ -28,7 +21,7 @@ class Seller(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
-    product_type = models.CharField(max_length=100, choices=PRODUCT_TYPE_CHOICES)
+    product_type = models.CharField(max_length=100)
 
 
 class InventoryReport(models.Model):

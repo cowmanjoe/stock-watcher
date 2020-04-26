@@ -6,7 +6,9 @@ import { useHistory } from "react-router-dom";
 const BackButton = () => {
   let history = useHistory();
   return (
-    <IconButton icon={ArrowBack} onClick={() => history.goBack()}></IconButton>
+    <IconButton onClick={() => history.goBack()}>
+      <ArrowBack />
+    </IconButton>
   );
 };
 

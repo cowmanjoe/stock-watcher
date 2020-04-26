@@ -1,5 +1,6 @@
 import React from "react";
 import config from "../config";
+import BackButton from "./BackButton";
 
 export default class SellerFocus extends React.Component {
   constructor(props) {
@@ -77,6 +78,8 @@ export default class SellerFocus extends React.Component {
   render() {
     return (
       <div>
+        <BackButton />
+
         <h1>{this.state.seller.name || "Seller not found"}</h1>
         <h2>
           {this.state.seller.address ? this.state.seller.address + "," : null}{" "}
