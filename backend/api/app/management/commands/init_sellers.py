@@ -1,5 +1,4 @@
-import datetime
-import random
+from api.app import util
 
 from django.core.management.base import BaseCommand
 from api.app.models import Seller as Seller, InventoryReport, Product
@@ -16,16 +15,7 @@ class Command(BaseCommand):
         # Initialize Dummy Store Data
         for seller_name in options["seller_names"]:
             if seller_name == "RANDOM":
-                for i in range(10):
-                    seller = mixer.blend(Seller)
-
-                    product, created = Product.objects.get_or_create(name="Charmin Ultra", product_type="Toilet Paper")
-
-                    inventory_report = InventoryReport(seller=seller, timestamp=datetime.datetime.now(), product=product, level="low")
-                    inventory_report.save()
-
-                print("Initialized Dummy Data")
-                break
+                util.initialize_database()
 
             # If not random, add the desired sellers        
             seller = mixer.blend(Seller, name=seller_name)
