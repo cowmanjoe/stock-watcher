@@ -60,7 +60,7 @@ export default class SellerReportForm extends React.Component {
       ) {
         console.log("success");
 
-        fetch("http://localhost:8000/sellers/", {
+        fetch("http://localhost:8000/inventory_reports/", {
             method: "post",
             headers: {
               'Accept': 'application/json',
@@ -73,7 +73,7 @@ export default class SellerReportForm extends React.Component {
               product_name: this.state.city,
               product_type: this.state.latitude,
             })
-            
+
           }).then(response => response.json())
       }
     }
