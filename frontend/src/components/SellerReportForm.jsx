@@ -34,7 +34,7 @@ export default class SellerReportForm extends React.Component {
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
-  submit() {
+  async submit() {
     if (!this.state.id) {
       this.setState({ idError: true });
     } else {
@@ -62,20 +62,22 @@ export default class SellerReportForm extends React.Component {
       this.state.product_type &&
       this.state.value
     ) {
-      fetch(`${config.BACKEND_URL}/inventory_reports`, {
+      const response = await fetch(`${config.BACKEND_URL}/inventory_reports/`, {
         method: "post",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-
         body: JSON.stringify({
-          seller_id: "123",
-          product_name: "Charmin 4 Ply",
-          product_type: "Toilet Paper",
-          level: "High",
-        }),
-      }).then((response) => response.json());
+          seller_id: this.state.id,
+          product_name: this.state.product_name,
+          product_type: this.state.product_type,
+          level: this.state.value,
+        })
+      }); 
+
+      const jsonResponse = await response.json();
+      console.log(jsonResponse);
     }
   }
   async handleSubmit(event) {
@@ -124,15 +126,15 @@ export default class SellerReportForm extends React.Component {
               error={this.state.stockError}
               onChange={this.handleChange}
               onKeyUp={this.handleSubmit}>
-              <FormControlLabel value="High" control={<Radio />} label="High" />
+              <FormControlLabel value="HIGH" control={<Radio />} label="High" />
               <FormControlLabel
-                value="Medium"
+                value="MEDIUM"
                 control={<Radio />}
                 label="Medium"
               />
-              <FormControlLabel value="Low" control={<Radio />} label="Low" />
+              <FormControlLabel value="LOW" control={<Radio />} label="Low" />
               <FormControlLabel
-                value="Out of Stock"
+                value="OUT_OF_STOCK"
                 control={<Radio />}
                 label="Out of Stock"
               />
