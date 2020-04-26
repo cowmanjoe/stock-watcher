@@ -9,6 +9,8 @@ from api.app.models import Seller, InventoryReport, Product
 from api.app.serializers import SellerSerializer, InventoryReportSerializer
 from rest_framework import generics
 
+from django.db.models import F
+
 
 class SellerViewSet(viewsets.ModelViewSet):
     queryset = Seller.objects.all()
@@ -41,23 +43,37 @@ class SellerList(generics.ListAPIView):
 
         product = self.request.query_params.get('product', None)
 
+        tempLatitude = (self.request.query_params.get('lat', None))
+        tempLongitude = (self.request.query_params.get('long', None))
+       
+        # orderBy = self.request.query_params.get('orderBy', None)
+
         if product is None:
-            return Seller.objects.all()
+            return Seller.objects.all().order_by('name')
 
-        inventory_report_name = InventoryReport.objects.filter(product__name__contains=product).\
+        if  tempLongitude is None or tempLatitude is None:
+            inventory_report_name = InventoryReport.objects.filter(product__name__contains=product).\
             exclude(level="OUT_OF_STOCK")
 
-        inventory_report_type = InventoryReport.objects.filter(product__product_type__contains=product).\
+            inventory_report_type = InventoryReport.objects.filter(product__product_type__contains=product).\
             exclude(level="OUT_OF_STOCK")
+        
+            for i_r_n in inventory_report_name:
+                i_r_n.seller.inventory_reports.filter(product__name=product)
+                seller_ids.append(i_r_n.seller.id)
 
-        for i_r_n in inventory_report_name:
-            i_r_n.seller.inventory_reports.filter(product__name=product)
-            seller_ids.append(i_r_n.seller.id)
+            for i_r_t in inventory_report_type:
+                i_r_t.seller.inventory_reports.filter(product__product_type=product)
+                seller_ids.append(i_r_t.seller.id)
 
-        for i_r_t in inventory_report_type:
-            i_r_t.seller.inventory_reports.filter(product__product_type=product)
-            seller_ids.append(i_r_t.seller.id)
 
-        queryset = Seller.objects.filter(id__in=seller_ids)
+            queryset = Seller.objects.filter(id__in=seller_ids).order_by('name')
+            return queryset
+        
+        latitude = float(tempLatitude)
+        longitude = float(tempLongitude)
 
-        return queryset
+        Seller_distance = Seller.objects.annotate(ordering=(F('latitude') - latitude) *  (F('latitude') - latitude)
+         + (F('longitude') - longitude) *  (F('longitude') - longitude)).order_by('ordering')
+        
+        return  Seller_distance
