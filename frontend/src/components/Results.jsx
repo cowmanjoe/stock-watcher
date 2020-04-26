@@ -2,6 +2,8 @@ import React from "react";
 import SellerCard from "./SellerCard";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Button from "@material-ui/core/Button";
+import config from "../config";
+
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +41,7 @@ export default class Results extends React.Component {
     let sellers;
     let response;
     try {
-      response = await fetch(`http://localhost:8000/search/?product=${item}`, {
+      response = await fetch(`${config.BACKEND_URL}/search/?product=${item}`, {
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {
@@ -91,7 +93,7 @@ export default class Results extends React.Component {
           let response;
           try {
             response = await fetch(
-              `http://localhost:8000/search/?product=${this.state.id}&lat=${position.coords.latitude}&long=${position.coords.longitude}`,
+              `${config.BACKEND_URL}/search/?product=${this.state.id}&lat=${position.coords.latitude}&long=${position.coords.longitude}`,
               {
                 headers: { "Content-Type": "application/json" },
               }

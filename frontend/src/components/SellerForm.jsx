@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import config from "../config";
 
 import TextField from "@material-ui/core/TextField";
 export default class SellerForm extends React.Component {
@@ -57,7 +58,8 @@ export default class SellerForm extends React.Component {
     ) {
       console.log("success");
 
-      fetch("http://localhost:8000/sellers/", {
+
+      fetch(`${config.BACKEND_URL}/sellers/`, {
         method: "post",
         headers: {
           Accept: "application/json",

@@ -1,7 +1,10 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import SellerCard from "./SellerCard";
+import config from "../config";
+
 import CircularProgress from "@material-ui/core/CircularProgress";
+
 export default class SellerResults extends React.Component {
   constructor(props) {
     super(props);
@@ -106,7 +109,7 @@ export default class SellerResults extends React.Component {
     let sellers;
     let response;
     try {
-      response = await fetch(`http://localhost:8000/sellers/?name=${item}`, {
+      response = await fetch(`${config.BACKEND_URL}/sellers/?name=${item}`, {
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {

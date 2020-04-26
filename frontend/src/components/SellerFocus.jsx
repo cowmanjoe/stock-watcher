@@ -1,4 +1,5 @@
 import React from "react";
+import config from "../config";
 
 export default class SellerFocus extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class SellerFocus extends React.Component {
     let seller;
     let response;
     try {
-      response = await fetch(`http://localhost:8000/sellers/${id}/`, {
+      response = await fetch(`${config.BACKEND_URL}/sellers/${id}/`, {
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {
