@@ -40,6 +40,10 @@ class SellerList(generics.ListAPIView):
         seller_ids = []
 
         product = self.request.query_params.get('product', None)
+
+        if product is None:
+            return Seller.objects.all()
+
         inventory_report = InventoryReport.objects.filter(product__name__contains=product).exclude(level="OUT_OF_STOCK")
 
         for i_r in inventory_report:
@@ -47,7 +51,4 @@ class SellerList(generics.ListAPIView):
 
         queryset = Seller.objects.filter(id__in=seller_ids)
 
-        if product is None:
-            queryset = Seller.objects.none
-            # queryset = queryset.filter(inventory_reports__product__name__contains=product)
         return queryset
