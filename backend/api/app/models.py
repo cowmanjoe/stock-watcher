@@ -17,6 +17,7 @@ INVENTORY_LEVEL_CHOICES = [
 
 
 class Seller(models.Model):
+    objects = None
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=200, null=True)
