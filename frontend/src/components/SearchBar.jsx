@@ -38,11 +38,11 @@ class SearchBar extends React.Component {
     return (
       <div>
         <div>
-          <input
-            placeholder="Enter Search Here"
-            style={{ margin: "10px" }}
+          <TextField
+            label="Search for Items"
+            value={this.state.term}
             onKeyUp={this.handleEnter}
-            onChange={this.handleTermChange}
+            onChange={(e) => this.setState({ term: e.target.value })}
           />
         </div>
         <div>
