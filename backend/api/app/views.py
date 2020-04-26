@@ -73,7 +73,7 @@ class SellerList(generics.ListAPIView):
         latitude = float(tempLatitude)
         longitude = float(tempLongitude)
 
-        Seller_distance = Seller.objects.filter(product__name__contains=product).annotate(ordering=(F('latitude') - latitude) *  (F('latitude') - latitude)
+        Seller_distance = Seller.objects.annotate(ordering=(F('latitude') - latitude) *  (F('latitude') - latitude)
          + (F('longitude') - longitude) *  (F('longitude') - longitude)).order_by('ordering')
         
         return  Seller_distance
