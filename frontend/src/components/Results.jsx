@@ -23,6 +23,7 @@ export default class Results extends React.Component {
 
     this.renderSellers = this.renderSellers.bind(this);
     this.renderSortByOptions = this.renderSortByOptions.bind(this);
+    this.handleSortByChange = this.handleSortByChange.bind(this);
   }
 
   async componentDidMount() {

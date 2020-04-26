@@ -11,7 +11,6 @@ export default class Navbar extends React.Component {
 
   handleChange(event, newValue) {
     this.setState({ value: newValue });
-   
   }
 
   render() {
@@ -23,13 +22,22 @@ export default class Navbar extends React.Component {
             variant="fullWidth"
             onChange={this.handleChange}>
             <Tab
-              label="Search By Item"
+              label="Home"
               activeStyle={{
                 fontWeight: "bold",
                 color: "red",
               }}
               exact
               to="/"
+              component={NavLink}
+            />
+            <Tab
+              label="Search By Item"
+              activeStyle={{
+                fontWeight: "bold",
+                color: "red",
+              }}
+              to="/search_items"
               component={NavLink}
             />
             <Tab
@@ -40,7 +48,6 @@ export default class Navbar extends React.Component {
               }}
               to="/search_sellers"
               component={NavLink}
-       
             />
             <Tab
               activeStyle={{
