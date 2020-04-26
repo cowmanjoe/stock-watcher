@@ -47,11 +47,27 @@ class SellerList(generics.ListAPIView):
 
         tempLatitude = (self.request.query_params.get('lat', None))
         tempLongitude = (self.request.query_params.get('long', None))
-       
+
+        name = (self.request.query_params.get('name', None))
         # orderBy = self.request.query_params.get('orderBy', None)
 
         if product is None:
-            return Seller.objects.all().order_by('name')
+            if name is not None:
+                if  tempLongitude is None or tempLatitude is None:
+                    temp = Seller.objects.filter(name__contains=name)
+                    return temp.order_by('name')
+                else:
+                     
+                    latitude = float(tempLatitude)
+                    longitude = float(tempLongitude)
+                    
+                    names = Seller.objects.filter(name__contains=name)
+                    Seller_distance = names.annotate(ordering=(F('latitude') - latitude) *  (F('latitude') - latitude)
+                    + (F('longitude') - longitude) *  (F('longitude') - longitude)).order_by('ordering')
+                    
+                    return Seller_distance
+
+            return Seller.objects.order_by('name')
 
         if  tempLongitude is None or tempLatitude is None:
             inventory_report_name = InventoryReport.objects.filter(product__name__search=product).\

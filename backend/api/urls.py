@@ -26,5 +26,6 @@ router.register(r'inventory_reports', views.InventoryReportViewSet, basename='in
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('search/', views.SellerList.as_view())
+    path('search/', views.SellerList.as_view()),
+    path('sellers_search/', views.SellerList.as_view())
 ]
