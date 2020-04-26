@@ -5,6 +5,7 @@ import config from "../config";
 import SearchBar from "./SearchBar";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import BackButton from "./BackButton";
+import { Container, Typography } from "@material-ui/core";
 
 export default class SellerResults extends React.Component {
   constructor(props) {
@@ -175,8 +176,9 @@ export default class SellerResults extends React.Component {
     let sortByLabel = <div>Sort By:</div>;
     return (
       <div>
+        
         <SearchBar getResults={(item) => (window.location.href = `${item}`)} />
-
+        <Container fixed>
         <h1>{`Search Results for ${this.state.id}`}</h1>
         <ul
           style={{
@@ -191,6 +193,7 @@ export default class SellerResults extends React.Component {
         ) : (
           this.renderSellers() || "No results were found :("
         )}
+        </Container>
       </div>
     );
   }

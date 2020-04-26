@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import config from "../config";
 import SearchBar from "./SearchBar";
 import BackButton from "./BackButton";
+import Container from '@material-ui/core/Container';
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
@@ -180,6 +181,7 @@ export default class Results extends React.Component {
     let sortByLabel = <div>Sort By:</div>;
     return (
       <div>
+        <Container fixed>
         <BackButton />
         <SearchBar getResults={(item) => (window.location.href = `${item}`)} />
         <h1>{`Search Results for ${this.state.id}`}</h1>
@@ -196,6 +198,7 @@ export default class Results extends React.Component {
         ) : (
           this.renderSellers() || "No results were found :("
         )}
+        </Container>
       </div>
     );
   }

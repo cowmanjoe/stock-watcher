@@ -14,7 +14,6 @@ export default class Home extends React.Component {
      
       <div style = {{marginTop: 30}}>
          <Container fixed>
-      <div>
         <BackButton />
 
         <div>
@@ -38,7 +37,7 @@ export default class Home extends React.Component {
           </Button>
         </div>
         
-      </div>
+
       </Container>
       </div>
     );
