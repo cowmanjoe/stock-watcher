@@ -59,7 +59,8 @@ export default class SellerResults extends React.Component {
             response = {};
           }
 
-          let jsonResponse = await response.json();
+          let jsonResponse;
+          if (response) jsonResponse = await response.json();
           console.log("RESPONSE: ");
 
           console.log(jsonResponse);
@@ -120,7 +121,8 @@ export default class SellerResults extends React.Component {
       console.log(err);
     }
 
-    let jsonResponse = await response.json();
+    let jsonResponse;
+    if (response) jsonResponse = await response.json();
 
     if (!jsonResponse) {
       sellers = [];
